@@ -1,0 +1,23 @@
+.cabecalho{
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #333;
+    margin-bottom: 30px;
+
+    h1{
+        margin: 0;
+        color: #bb86fc;
+    }
+
+    p{
+        margin-top: 10px;
+        color: #a0a0a0;
+    }
+}
+
+.conteudo-principal{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
