@@ -1,1 +1,33 @@
-<p>lista-produtos works!</p>
+<div class="conatiner-lista">
+    <h2>Produtos Cadastrados</h2>
+
+    <!-- Ver se a lista está vazia -->
+    @if (produtos.length === 0) {
+        <p class="mensagem-vazia">Nenhum produto cadastrado ainda.</p>
+    } @else {
+        <table class="tabela-produtos">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (produto of produtos; track produto.id) {
+                    <tr>
+                        <td>{{ produto.nome }}</td>
+                        <td>{{ produto.categoria }}</td>
+                        <td>{{ produto.preco | currency: 'BRL': 'symbol': '1.2-2'}}</td>
+                        <td>{{ produto.quantidadeEstoque }}</td>
+                        <td>
+                            <button class="btn-excluir" (click)="excluir(produto.id)">Excluir</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }   
+</div>
