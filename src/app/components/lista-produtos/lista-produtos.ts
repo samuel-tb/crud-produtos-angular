@@ -12,6 +12,8 @@ import { CurrencyPipe } from '@angular/common'; // Importação para formatar mo
 export class ListaProdutos implements OnInit {
   produtos: Produto[] = [];
 
+  idProdutoExcluido: string | undefined = undefined;
+
   constructor(private produtoService: ProdutoService) {}
   
   // O ngOnInit roda automaticamente assim que a tela é aberta
@@ -23,12 +25,21 @@ export class ListaProdutos implements OnInit {
     this.produtos = this.produtoService.listarProdutos();
   }
 
-  excluir(id: string | undefined): void{
-    if(!id) return;
+  prepararExclusao(id: string | undefined): void {
+    if(id){
+      this.idProdutoExcluido = id;
+    }
+  }
 
-    if(confirm('Tem certeza que deseja excluir este produto?')) {
-      this.produtoService.excluirProduto(id);
-      this.carregarProdutos(); // Recarrega a lista para remover o item da tela visualmente
+  cancelarExclusao(): void {
+    this.idProdutoExcluido = undefined;
+  }
+
+  confirmarExclusao(): void {
+    if(this.idProdutoExcluido) {
+      this.produtoService.excluirProduto(this.idProdutoExcluido);
+      this.carregarProdutos();
+      this.idProdutoExcluido = undefined;
     }
   }
   

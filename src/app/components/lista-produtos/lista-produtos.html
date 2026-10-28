@@ -23,11 +23,24 @@
                         <td>{{ produto.preco | currency: 'BRL': 'symbol': '1.2-2'}}</td>
                         <td>{{ produto.quantidadeEstoque }}</td>
                         <td>
-                            <button class="btn-excluir" (click)="excluir(produto.id)">Excluir</button>
+                            <button class="btn-excluir" (click)="prepararExclusao(produto.id)">Excluir</button>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+
+        @if(idProdutoExcluido) {
+            <div class="modal-overlay">
+                <div class="modal-conteudo">
+                    <h3>Confirmar Exclusão</h3>
+                    <p>Tem certeza de que deseja excluir este produto permanentemente?</p>
+                    <div class="modal-botoes">
+                        <button class="btn-cancelar" (click)="cancelarExclusao()">Cancelar</button>
+                        <button class="btn-confirmar" (click)="confirmarExclusao()">Sim</button>
+                    </div>
+                </div>
+            </div>
+        }
     }   
 </div>

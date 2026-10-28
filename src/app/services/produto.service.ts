@@ -20,6 +20,7 @@ export class ProdutoService {
   adicionarProduto(produto: Produto): void{
     const produtos = this.listarProdutos();
     produto.id = Math.random().toString(36).substring(2, 9);
+    produtos.push(produto);
 
     localStorage.setItem(this.CHAVE_STORAGE, JSON.stringify(produtos));
   }

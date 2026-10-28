@@ -2,6 +2,12 @@
     <section class="card-formulario">
         <h2>Cadastrar Novo Produto</h2>
 
+        @if (mostrarMensagemSucesso) {
+            <div class="mensagem-sucesso">
+                Produto cadastrado com sucesso!
+            </div>
+        }
+        
         <form (ngSubmit)="salvar()">
             <div class="grupo-input">
                 <label for="nome">Nome do Produto</label>
