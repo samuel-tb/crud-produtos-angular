@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Produto } from '../models/produto';
+import { JsonPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +31,20 @@ export class ProdutoService {
     const produtosFiltrados = produtos.filter(p => p.id !== id);
 
     localStorage.setItem(this.CHAVE_STORAGE, JSON.stringify(produtosFiltrados));
+  }
+
+  obterProdutoPorId(id: string): Produto | undefined {
+    const produtos = this.listarProdutos();
+    return produtos.find(p => p.id === id);
+  }
+
+  atualizarProduto(produtoAtualizado: Produto) : void {
+    const produtos = this.listarProdutos();
+    const index = produtos.findIndex(p => p.id === produtoAtualizado.id);
+
+    if (index !== -1) {
+      produtos[index] = produtoAtualizado;
+      localStorage.setItem(this.CHAVE_STORAGE, JSON.stringify(produtos));
+    }
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProdutoService } from '../../services/produto.service';
 import { Produto } from '../../models/produto';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-produtos',
@@ -18,8 +19,25 @@ export class Produtos {
   mostrarMensagemSucesso: boolean = false;
 
   // Injeção do serviço que salva no LocalStorage
-  constructor (private produtoService: ProdutoService) {}
+  constructor (
+    private produtoService: ProdutoService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
   
+  ngOnInit(): void{
+
+    // Verifica se existe um ID na URL assim que a tela abre
+    const idParam = this.route.snapshot.paramMap.get('id');
+
+    if(idParam){
+      const produtoEncontrado = this.produtoService.obterProdutoPorId(idParam);
+      if(produtoEncontrado){
+        this.novoProduto = { ...produtoEncontrado } // carrega os dados na tela
+      }
+    }
+  }
+
   salvar(): void{
     if(!this.novoProduto.nome || !this.novoProduto.categoria) return;
 

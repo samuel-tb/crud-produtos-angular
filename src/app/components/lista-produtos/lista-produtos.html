@@ -23,6 +23,7 @@
                         <td>{{ produto.preco | currency: 'BRL': 'symbol': '1.2-2'}}</td>
                         <td>{{ produto.quantidadeEstoque }}</td>
                         <td>
+                            <button class="btn-editar" [routerLink]="['/cadastro', produto.id]">Editar</button>
                             <button class="btn-excluir" (click)="prepararExclusao(produto.id)">Excluir</button>
                         </td>
                     </tr>

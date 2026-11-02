@@ -1,6 +1,6 @@
 <div class="container-produtos">
     <section class="card-formulario">
-        <h2>Cadastrar Novo Produto</h2>
+        <h2>{{ novoProduto.id ? 'Editar Produto' : 'Cadastrar Novo Produto' }}</h2>
 
         @if (mostrarMensagemSucesso) {
             <div class="mensagem-sucesso">
@@ -36,7 +36,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn-salvar">Salvar Produtos</button>
+            <button type="submit" class="btn-salvar">{{ novoProduto.id ? 'Atualizar Produto' : 'Salvar Produto'}}</button>
         </form>
     </section>
 </div>

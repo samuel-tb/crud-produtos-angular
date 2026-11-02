@@ -6,6 +6,7 @@ import { ListaProdutos } from './components/lista-produtos/lista-produtos';
 export const routes: Routes = [
     { path: '', component: Home },
     { path: 'cadastro', component: Produtos },
+    { path: 'cadastro/:id', component: Produtos },
     { path: 'lista', component: ListaProdutos },
     { path: '**', redirectTo: '' } // Redirecionamento de segurança
 ];

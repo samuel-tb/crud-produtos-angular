@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../../services/produto.service';
 import { Produto } from '../../models/produto';
 import { CurrencyPipe } from '@angular/common'; // Importação para formatar moeda
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-lista-produtos',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterModule],
   templateUrl: './lista-produtos.html',
   styleUrl: './lista-produtos.scss',
 })
