@@ -38,18 +38,25 @@ export class Produtos {
     }
   }
 
+  mensagemSucesso: string = '';
+
   salvar(): void{
     if(!this.novoProduto.nome || !this.novoProduto.categoria) return;
 
-    this.produtoService.adicionarProduto(this.novoProduto);
-    
-    this.mostrarMensagemSucesso = true;
-    this.novoProduto = { nome: '', preco: 0, quantidadeEstoque: 0, categoria: ''};
+    if(this.novoProduto.id){
+      this.produtoService.atualizarProduto(this.novoProduto);
+      this.mensagemSucesso = 'Produto atualizado com sucesso!';
+    } else{
+      this.produtoService.adicionarProduto(this.novoProduto);
+      this.mensagemSucesso = 'Produto cadastrado com sucesso!'
+    }
 
-    //Oculta a mensagem automaticamente após 3 segundos
+    this.mostrarMensagemSucesso = true;
+
     setTimeout(() => {
       this.mostrarMensagemSucesso = false;
-    }, 3000);
+      this.router.navigate(['/lista']);
+    }, 1500);
   }
 
 
